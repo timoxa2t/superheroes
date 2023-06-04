@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/superheroes/static/css/main.07b71d7b.css",
+    "main.js": "/superheroes/static/js/main.82413338.js",
+    "static/js/787.e69b19e3.chunk.js": "/superheroes/static/js/787.e69b19e3.chunk.js",
+    "static/media/upload_img.png": "/superheroes/static/media/upload_img.3fb22953eac06465144e.png",
+    "static/media/ZaHQ4Jf-super-heroes-wallpaper.jpg": "/superheroes/static/media/ZaHQ4Jf-super-heroes-wallpaper.6c6f724a297f138a077b.jpg",
+    "static/media/icons8-edit.svg": "/superheroes/static/media/icons8-edit.a26a28f37ce8a7f5f576.svg",
+    "index.html": "/superheroes/index.html",
+    "static/media/add_icon.svg": "/superheroes/static/media/add_icon.0f4752722a3df0d81a0e065197fb9f85.svg",
+    "static/media/nextPage.svg": "/superheroes/static/media/nextPage.ef3eb04cb5af72031f476acf63c677e5.svg",
+    "static/media/nextPageDisabled.svg": "/superheroes/static/media/nextPageDisabled.a36e74fa66c087c3db88ae6b2cd1af65.svg",
+    "static/media/prevPage.svg": "/superheroes/static/media/prevPage.7d3c7204a569b14ca2c58f128de43b0a.svg",
+    "static/media/prevPageDisabled.svg": "/superheroes/static/media/prevPageDisabled.4ef73287ca8607caae0d6c0ee3e8d264.svg",
+    "main.07b71d7b.css.map": "/superheroes/static/css/main.07b71d7b.css.map",
+    "main.82413338.js.map": "/superheroes/static/js/main.82413338.js.map",
+    "787.e69b19e3.chunk.js.map": "/superheroes/static/js/787.e69b19e3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.07b71d7b.css",
+    "static/js/main.82413338.js"
+  ]
+}
