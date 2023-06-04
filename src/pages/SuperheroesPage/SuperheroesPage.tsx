@@ -37,7 +37,12 @@ export const SuperheroesPage: React.FC = () => {
         total
       }) => {
         setTotalSuperheroes(total);
-        setSuperheroes([newSuperhero, ...superheroes]);
+        if (currentPage === 1) {
+          setSuperheroes([newSuperhero, ...superheroes]);
+        } else {
+          setSuperheroes(superheroes);
+        }
+
 
       }).finally(() => setIsLoading(false));;
 

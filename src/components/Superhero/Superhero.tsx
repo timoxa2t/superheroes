@@ -11,6 +11,7 @@ type Props = {
   superhero: SuperheroDetails;
   update: (changes: Partial<SuperheroDetails>) => void;
   handleDelete: () => void,
+  create: (params: Partial<SuperheroDetails>, image: File) => void,
   isNew: boolean,
 };
 
@@ -18,6 +19,7 @@ export const Superhero: React.FC<Props> = ({
   superhero,
   update,
   handleDelete,
+  create,
   isNew,
 }) => {
   const {
@@ -36,7 +38,7 @@ export const Superhero: React.FC<Props> = ({
   const [catchPhrase, setCatchPhrase] = useState(catch_phrase);
   const [originDescription, setOriginDescription] = useState(origin_description);
   const [isEditMode, setIsEditMode] = useState(isNew);
-  const [selectedImage, setSelectedImage] = useState<File>()
+  const [selectedImage, setSelectedImage] = useState<File>();
 
   const realNameChanged = realName !== real_name
   const catchPhraseChanged = catchPhrase !== catch_phrase
@@ -135,12 +137,12 @@ export const Superhero: React.FC<Props> = ({
     event.preventDefault();
 
     if (selectedImage) {
-      createSuperhero({
+      create({
         nickname: newNickname,
         real_name: realName,
         catch_phrase: catchPhrase,
         origin_description: originDescription,
-      }, selectedImage)
+      }, selectedImage);
     }
   }
 
@@ -221,6 +223,7 @@ export const Superhero: React.FC<Props> = ({
               <Form.Control
                 as="textarea"
                 rows={4}
+                maxLength={255}
                 value={originDescription}
                 onChange={handleOriginDescriptionChange}
                 disabled={!isEditMode}
@@ -228,7 +231,7 @@ export const Superhero: React.FC<Props> = ({
               />
             </Form.Group>
 
-            {isEditMode && isChanged && (
+            {isEditMode && !isNew && isChanged && (
               <Button type='submit'>
                 Save
               </Button>

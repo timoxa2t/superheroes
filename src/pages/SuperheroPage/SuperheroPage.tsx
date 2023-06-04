@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './SuperheroPage.module.scss';
 import classNames from 'classnames';
-import { deleteHero, getSuperheroById, updateSuperhero } from '../../api/superheroes';
+import { createSuperhero, deleteHero, getSuperheroById, updateSuperhero } from '../../api/superheroes';
 import { useParams } from 'react-router-dom';
 import { SuperheroDetails } from '../../types/SuperheroDetails';
 import { Superhero } from '../../components/Superhero';
@@ -20,7 +20,7 @@ const defaultSuperhero: SuperheroDetails = {
 
 export const SuperheroPage: React.FC = () => {
   const { id } = useParams();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [superhero, setSuperhero] = useState<SuperheroDetails>(defaultSuperhero);
   const [isNewHero, setIsNewHero] = useState(false);
 
@@ -31,6 +31,7 @@ export const SuperheroPage: React.FC = () => {
 
     if (id === 'new') {
       setIsNewHero(true);
+      setIsLoading(false);
 
       return
     }
@@ -61,6 +62,18 @@ export const SuperheroPage: React.FC = () => {
     } 
   }
 
+  const create = (superhero: Partial<SuperheroDetails>, image: File) => {
+    setIsLoading(true);
+
+    createSuperhero(superhero, image)
+      .then(result => {
+        window.location.replace(`/sueprhero/${result.id}`);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
   const handleDelete = () => {
     if (superhero) {
       deleteHero(superhero.id)
@@ -88,6 +101,7 @@ export const SuperheroPage: React.FC = () => {
             superhero={superhero}
             update={update}
             handleDelete={handleDelete}
+            create={create}
             isNew={isNewHero}
           /> 
         )
