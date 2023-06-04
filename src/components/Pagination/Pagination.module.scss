@@ -1,0 +1,32 @@
+@import '../../../public/styles/index.scss';
+
+.pagination {
+  width: fit-content;
+  display: flex;
+  margin: auto;
+  background-color: white;
+
+  padding: 10px;
+  border-radius: 4px;
+
+  @include onTablet {
+    margin: 40px auto auto;
+  }
+
+  @include onDesktop {
+    margin: 45px auto auto;
+  }
+
+  &_item {
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+    list-style: none;
+  }
+
+  &_link {
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+  }
+}

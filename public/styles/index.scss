@@ -1,0 +1,19 @@
+@import './utils/variables';
+@import './utils/mixins';
+
+@import './reset.scss';
+@import './normalize.scss';
+
+body {
+  background-image: url('../img/ZaHQ4Jf-super-heroes-wallpaper.jpg');
+  background-position: center top;
+}
+
+.container {
+  box-sizing: border-box;
+  margin: auto;
+  width: 100%;
+  max-width: 1200px;
+  min-width: 320px;
+  padding: 25px 16px 64px 16px;
+}

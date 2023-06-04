@@ -1,0 +1,27 @@
+@import '../../../public/styles/index.scss';
+
+.disabledPaginationButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px; //should make micsin
+  border: 1px solid $borders;
+  transition: $transition-time;
+}
+
+.paginationButton {
+  @extend .disabledPaginationButton;
+  border: 1px solid #B4BDC3;
+
+  &:hover {
+    border: 1px solid $primary;
+  }
+}
+
+.active {
+  background-color: $primary;
+  color: white;
+}
+
+

@@ -1,0 +1,73 @@
+@import '../../../public/styles/index.scss';
+
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+  min-width: 287px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 32px;
+  align-items: center;
+  border: 1px solid $borders;
+  transition: box-shadow $transition-time ease;
+
+  &:hover {
+    box-shadow: 0 2px 16px rgba(0,0,0, 0.15);
+  }
+
+  &__image-container {
+    width: 100%;
+    border-radius: 4px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  &__image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    height: 100%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: auto;
+    object-fit: contain;
+
+
+    transition: $transition-time;
+
+
+    &:hover{
+      transform: scale(110%) translate(-50%, -50%);
+      transform-origin: -10% -10%;
+    }
+  }
+
+  &__image-fixed {
+    width: 100px;
+    height: 100px;
+  }
+
+  &__nickname {
+    font-family: Arial, Helvetica, sans-serif;
+    color: $primary;
+    font-size: 30px;
+    font-weight: 600;
+    transition: $transition-time;
+
+    &:hover{
+      color: $secondary;
+    }
+
+  }
+}
+
+
+
+
+

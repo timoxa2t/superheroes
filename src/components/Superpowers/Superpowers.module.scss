@@ -1,0 +1,10 @@
+@import '../../../public/styles/index.scss';
+
+.superpowers {
+  position: relative;
+
+  &__new {
+    display: flex;
+    gap: 8px;
+  }
+}  
