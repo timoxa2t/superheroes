@@ -27,8 +27,8 @@ const superheroDetails: SuperheroDetails = {
   ]
 }
 
-// export const BASE_URL = 'https://jellyfish-app-f5j44.ondigitalocean.app';
-export const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = 'https://jellyfish-app-f5j44.ondigitalocean.app';
+// export const BASE_URL = 'http://localhost:3000';
 
 async function get<T>(url: string, query: any = {}): Promise<T> {
   const params = new URLSearchParams(query);
