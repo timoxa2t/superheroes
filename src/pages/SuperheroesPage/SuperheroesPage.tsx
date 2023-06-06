@@ -22,7 +22,7 @@ export const SuperheroesPage: React.FC = () => {
   const [superheroes, setSuperheroes] = useState<Superhero[]>([newSuperhero]);
   const [itemsPerPage] = useState(5);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')));  
+  const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')));
 
   useEffect(() => {
     setIsLoading(true);
@@ -34,7 +34,7 @@ export const SuperheroesPage: React.FC = () => {
     getSuperheroes(itemsPerPage, newOffset)
       .then(({
         superheroes,
-        total
+        total,
       }) => {
         setTotalSuperheroes(total);
         if (currentPage === 1) {

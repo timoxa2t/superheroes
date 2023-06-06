@@ -2,9 +2,31 @@
 
 .superpowers {
   position: relative;
+  overflow: hidden;
 
   &__new {
     display: flex;
     gap: 8px;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__remove {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+
+    background-image: url('../../../public/img/icons8-trash.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }  

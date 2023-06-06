@@ -1,11 +1,10 @@
-import React, { ChangeEvent, FormEvent, useMemo, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './Superhero.module.scss';
-import { BASE_URL, createSuperhero, postNewImage } from '../../api/superheroes';
 import { SuperheroDetails } from '../../types/SuperheroDetails';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 import { Button, Form } from 'react-bootstrap';
 import { Superpowers } from '../Superpowers';
+import { ImagesList } from '../ImagesList';
 
 type Props = {
   superhero: SuperheroDetails;
@@ -28,8 +27,8 @@ export const Superhero: React.FC<Props> = ({
     real_name,
     catch_phrase,
     origin_description,
-    image,
     superpowers,
+    image,
     images,
   } = superhero;
 
@@ -45,45 +44,7 @@ export const Superhero: React.FC<Props> = ({
   const originDescriptionChanged = originDescription !== origin_description;
   const isChanged = realNameChanged || catchPhraseChanged || originDescriptionChanged;
 
-  const imageCards = useMemo(() => {
-
-    const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-      if (event.target.files !== null) {
-        postNewImage(id, event.target.files);
-      }
-    };
-
-    return [
-      <div className={styles['carousel__image-container']}>
-        <img
-          className={styles['carousel__image']}
-          src={BASE_URL + '/' + image}
-          alt='hero'
-        />
-
-        <p className="legend">{catch_phrase}</p>
-      </div>
-      ,
-      ...images.map(img => (
-        <div key={img} className={styles['carousel__image-container']}>
-          <img
-            className={styles['carousel__image']}
-            src={BASE_URL + '/' + img} 
-            alt='hero'
-          />
-        </div>
-      )),
-      <Form>
-        <Form.Group className="mb-3" controlId="image">
-          <Form.Control
-            type="file"
-            className={styles['superhero__image-form']}
-            onChange={handleImageChange}
-          />
-        </Form.Group>
-      </Form>,
-    ]
-  }, [id, image, images, catch_phrase])
+  
 
   const handleSelectedImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
@@ -110,7 +71,16 @@ export const Superhero: React.FC<Props> = ({
   }
 
   const toggleEditMode = () => {
-    setIsEditMode(prevMode => !prevMode);
+    setIsEditMode(prevMode => {
+      if (prevMode) {
+        setNewNickname(nickname);
+        setRealName(real_name);
+        setCatchPhrase(catch_phrase);
+        setOriginDescription(origin_description);
+      }
+
+      return !prevMode;
+    });
   } 
 
   const handleUpdate = (event: FormEvent<HTMLFormElement>) => {
@@ -126,7 +96,7 @@ export const Superhero: React.FC<Props> = ({
       changes.catch_phrase = catchPhrase;
     }
 
-    if (catchPhraseChanged) {
+    if (originDescriptionChanged) {
       changes.origin_description = originDescription;
     }
 
@@ -171,9 +141,7 @@ export const Superhero: React.FC<Props> = ({
             </Form.Group>
           )
           : (
-            <Carousel className={styles.superhero__carousel}>
-              {imageCards}
-            </Carousel>
+            <ImagesList images={[image, ...images]} id={id} />
         )}
 
 
@@ -189,6 +157,7 @@ export const Superhero: React.FC<Props> = ({
                 <Form.Control
                   type="text"
                   value={newNickname}
+                  maxLength={255}
                   onChange={handleNicknameChange}
                   disabled={!isEditMode}
                   required
@@ -201,6 +170,7 @@ export const Superhero: React.FC<Props> = ({
               <Form.Control
                 type="text"
                 value={realName}
+                maxLength={255}
                 onChange={handleRealNameChange}
                 disabled={!isEditMode}
                 required
@@ -211,6 +181,7 @@ export const Superhero: React.FC<Props> = ({
               <Form.Label>Catch phrase</Form.Label>
               <Form.Control
                 type="text"
+                maxLength={255}
                 value={catchPhrase}
                 onChange={handleCatchPhraseChange}
                 disabled={!isEditMode}
@@ -223,7 +194,6 @@ export const Superhero: React.FC<Props> = ({
               <Form.Control
                 as="textarea"
                 rows={4}
-                maxLength={255}
                 value={originDescription}
                 onChange={handleOriginDescriptionChange}
                 disabled={!isEditMode}
@@ -232,7 +202,7 @@ export const Superhero: React.FC<Props> = ({
             </Form.Group>
 
             {isEditMode && !isNew && isChanged && (
-              <Button type='submit'>
+              <Button type='submit' className={styles.superhero__save__button}>
                 Save
               </Button>
             )}

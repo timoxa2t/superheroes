@@ -2,6 +2,7 @@ import axios from "axios";
 import { Superhero } from "../types/Superhero";
 import { SuperheroDetails } from "../types/SuperheroDetails";
 import { Superpower } from "../types/Superpower";
+import { SuperheroImage } from "../types/SuperheroImage";
 
 const superheroes: Superhero[] = [
   {
@@ -26,8 +27,8 @@ const superheroDetails: SuperheroDetails = {
   ]
 }
 
-export const BASE_URL = 'https://jellyfish-app-f5j44.ondigitalocean.app';
-// export const BASE_URL = 'http://localhost:3000';
+// export const BASE_URL = 'https://jellyfish-app-f5j44.ondigitalocean.app';
+export const BASE_URL = 'http://localhost:3000';
 
 async function get<T>(url: string, query: any = {}): Promise<T> {
   const params = new URLSearchParams(query);
@@ -87,10 +88,17 @@ export function getSuperheroById(id: string): Promise<SuperheroDetails>{
 export function postNewImage(
   id: number,
   image: FileList,
-): Promise<string> {
+): Promise<SuperheroImage> {
   const form = new FormData();
   form.set('image', image[0]);
-  return post<string>(`superhero/${id.toString()}/image`, form);
+  return post<SuperheroImage>(`superhero/${id.toString()}/image`, form);
+}
+
+export function removeImage(
+  id: number,
+  url: string
+): Promise<number> {
+  return remove(`superhero/${id.toString()}/${url}`);
 }
 
 export async function createSuperhero(
@@ -112,11 +120,11 @@ export async function createSuperhero(
 }
 
 
-export function updateSuperhero(
+export async function updateSuperhero(
   id: number,
   superhero: Partial<SuperheroDetails>,
 ): Promise<SuperheroDetails> {
-  return put(`superhero/${id.toString()}`, superhero);
+  return await put<SuperheroDetails>(`superhero/${id.toString()}`, superhero);
 }
 
 export function deleteHero(
@@ -134,4 +142,11 @@ export async function addSuperpower(
   });
 
   return newSuperpower.name;
+}
+
+export function removeSuperpower(
+  id: number,
+  name: string
+): Promise<number> {
+  return remove(`superhero/${id.toString()}/superpower/${name}`);
 }

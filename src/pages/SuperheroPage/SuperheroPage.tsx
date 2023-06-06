@@ -54,6 +54,7 @@ export const SuperheroPage: React.FC = () => {
       setIsLoading(true)
       updateSuperhero(superhero.id, changes)
         .then(updated => {
+          console.log(updated)
           setSuperhero(updated);
         })
         .finally(() => {
@@ -86,6 +87,8 @@ export const SuperheroPage: React.FC = () => {
     }
   }
 
+
+  console.log(superhero)
 
   return (
     <div

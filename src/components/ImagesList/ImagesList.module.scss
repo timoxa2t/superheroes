@@ -1,0 +1,96 @@
+@import '../../../public/styles/index.scss';
+
+
+.carousel { 
+  &__image-container {
+    position: relative;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &__container,
+  &__image {
+    position: relative;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    flex-basis: 100%;
+    max-width: 100%;
+
+    @include onTablet {
+      flex-basis: 50%;
+      max-width: 50%;
+    }
+  }
+
+  &__image {
+    position: relative;
+  }
+
+  &__image {
+    object-fit: cover;
+    height: 100%;
+    min-width: 100%;
+  }
+
+  &__image-delete {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    background-color: white;
+    opacity: 0.3;
+
+    background-image: url('../../../public/img/icons8-trash.svg');
+    background-size: 20px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__image-form {
+    width: 0;
+    height: 0;
+    display: inline-block;
+    border: none;
+
+    &::before {
+      content: "";
+
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(#000000, 0.2);
+      border-radius: 20px;
+    }
+
+    &::after {
+      content: "";
+
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('../../../public/img/upload_img.png');
+      background-size: 200px 200px;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+  }
+}
