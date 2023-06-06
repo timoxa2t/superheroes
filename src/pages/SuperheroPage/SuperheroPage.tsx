@@ -56,7 +56,6 @@ export const SuperheroPage: React.FC = () => {
       setIsLoading(true)
       updateSuperhero(superhero.id, changes)
         .then(updated => {
-          console.log(updated)
           setSuperhero(updated);
         })
         .finally(() => {
@@ -70,7 +69,7 @@ export const SuperheroPage: React.FC = () => {
 
     createSuperhero(superhero, image)
       .then(result => {
-        window.location.replace(`/sueprhero/${result.id}`);
+        navigate(`/superhero/${result.id}`);
       })
       .finally(() => {
         setIsLoading(false);
@@ -81,7 +80,7 @@ export const SuperheroPage: React.FC = () => {
     if (superhero) {
       deleteHero(superhero.id)
         .then(() => {
-          return window.location.replace('/');
+          navigate(-1);
         })
         .finally(() => {
           setIsLoading(false);
