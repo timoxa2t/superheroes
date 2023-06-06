@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './SuperheroPage.module.scss';
 import classNames from 'classnames';
 import { createSuperhero, deleteHero, getSuperheroById, updateSuperhero } from '../../api/superheroes';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { SuperheroDetails } from '../../types/SuperheroDetails';
 import { Superhero } from '../../components/Superhero';
 import { Loader } from '../../components/Loader';
@@ -23,6 +23,8 @@ export const SuperheroPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [superhero, setSuperhero] = useState<SuperheroDetails>(defaultSuperhero);
   const [isNewHero, setIsNewHero] = useState(false);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     if (!id) {
@@ -43,11 +45,11 @@ export const SuperheroPage: React.FC = () => {
         setSuperhero(details);
       })
       .catch(() => {
-        window.location.replace('/');
+        navigate('/');
       })
       .finally(() => setIsLoading(false));;
 
-  }, [id]);
+  }, [id, navigate]);
 
   const update = (changes: Partial<SuperheroDetails>) => {
     if (superhero) {
