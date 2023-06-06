@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/superheroes/static/css/main.f543c48a.css",
-    "main.js": "/superheroes/static/js/main.8b1057d4.js",
+    "main.js": "/superheroes/static/js/main.6b5f0e28.js",
     "static/js/787.e69b19e3.chunk.js": "/superheroes/static/js/787.e69b19e3.chunk.js",
     "static/media/upload_img.png": "/superheroes/static/media/upload_img.3fb22953eac06465144e.png",
     "static/media/ZaHQ4Jf-super-heroes-wallpaper.jpg": "/superheroes/static/media/ZaHQ4Jf-super-heroes-wallpaper.6c6f724a297f138a077b.jpg",
@@ -14,11 +14,11 @@
     "static/media/prevPage.svg": "/superheroes/static/media/prevPage.7d3c7204a569b14ca2c58f128de43b0a.svg",
     "static/media/prevPageDisabled.svg": "/superheroes/static/media/prevPageDisabled.4ef73287ca8607caae0d6c0ee3e8d264.svg",
     "main.f543c48a.css.map": "/superheroes/static/css/main.f543c48a.css.map",
-    "main.8b1057d4.js.map": "/superheroes/static/js/main.8b1057d4.js.map",
+    "main.6b5f0e28.js.map": "/superheroes/static/js/main.6b5f0e28.js.map",
     "787.e69b19e3.chunk.js.map": "/superheroes/static/js/787.e69b19e3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f543c48a.css",
-    "static/js/main.8b1057d4.js"
+    "static/js/main.6b5f0e28.js"
   ]
 }
