@@ -51,7 +51,7 @@ export const ImagesList: React.FC<Props> = ({
     }
 
     return [
-      ...allImages.map(img => (
+      ...allImages.map((img, index) => (
         <div key={img} className={styles['carousel__image-container']}>
 
           <img
@@ -60,11 +60,13 @@ export const ImagesList: React.FC<Props> = ({
             alt='hero'
           />
           
-          <button
-            type='button'
-            className={styles['carousel__image-delete']}
-            onClick={() => handleImageRemove(img)}
-          />
+          {index && (
+            <button
+              type='button'
+              className={styles['carousel__image-delete']}
+              onClick={() => handleImageRemove(img)}
+            />
+          )}
 
           {isLoading && (<Loader />)}
         </div>
