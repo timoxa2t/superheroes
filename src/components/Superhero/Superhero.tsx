@@ -128,20 +128,8 @@ export const Superhero: React.FC<Props> = ({
 
       <Form onSubmit={isNew ? handleCreate : handleUpdate} className={styles.superhero__form}>
 
-        {isNew 
-          ? (
-            <Form.Group className={styles.superhero__image} controlId="image">
-              <Form.Label>{selectedImage?.name}</Form.Label>
-              <Form.Control
-                type="file"
-                onChange={handleSelectedImageChange}
-                className={styles['superhero__image-form']}
-                required
-              />
-            </Form.Group>
-          )
-          : (
-            <ImagesList images={[image, ...images]} id={id} />
+        {!isNew && (
+          <ImagesList images={[image, ...images]} id={id} />
         )}
 
 
@@ -152,17 +140,29 @@ export const Superhero: React.FC<Props> = ({
 
           <div className={styles['superhero__main-form']}>
             {isNew && (
-              <Form.Group className="mb-3" controlId="nickname">
-                <Form.Label>Nickname</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={newNickname}
-                  maxLength={255}
-                  onChange={handleNicknameChange}
-                  disabled={!isEditMode}
-                  required
-                />
-              </Form.Group>
+              <>
+                <Form.Group className="mb-3" controlId="image">
+                  <Form.Label>Image</Form.Label>
+                  <Form.Control
+                    type="file"
+                    onChange={handleSelectedImageChange}
+                    className={styles['superhero__image-form']}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="nickname">
+                  <Form.Label>Nickname</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={newNickname}
+                    maxLength={255}
+                    onChange={handleNicknameChange}
+                    disabled={!isEditMode}
+                    required
+                  />
+                </Form.Group>
+              </>
             )}
 
             <Form.Group className="mb-3" controlId="real_name">
@@ -210,20 +210,20 @@ export const Superhero: React.FC<Props> = ({
             {!isNew && (
               <Superpowers id={id} superpowers={superpowers}/>
             )}
+            
+            {isNew && (
+              <Button
+                variant='primary'
+                type='submit'
+              >
+                Create
+              </Button>
+            )}
 
           </div>
         </div>
 
-        {isNew
-          ? (
-            <Button
-              variant='primary'
-              type='submit'
-            >
-              Create
-            </Button>
-          )
-          : (
+        {!isNew && (
             <Button
               variant='danger'
               onClick={handleDelete}
